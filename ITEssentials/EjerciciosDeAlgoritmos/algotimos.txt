@@ -1,0 +1,57 @@
+Algoritmo_para_ver_YouTube:
+Traer la computadora
+sino traer la Tablet
+sino traer el teléfono
+sino:
+	pedir prestado algún dispositivo 
+Abrir YouTube por aplicación o por web.
+Seleccionar videos recomendados 
+sino:
+	buscar video
+Cuando el video finalice, preguntar si quiere ver otro video
+Si sí quiere ver otro video devolverse al step 6
+sino quiere ver video, salir del programa
+
+Algoritmo_rutina_diaria:
+mientras sean antes de la 7 de la mañana seguir, seguir durmiendo
+Si son las 7 de la mañana o mas despertar
+limpieza
+ir al baño
+quitarme la pijama 
+meterme a la regadera
+abrir el agua
+bañarme
+mientras me esté enjabonando o me este lavando el pelo o me este lavando la cara:
+cerrar el agua
+cerrar el agua 
+secarme
+Ponerme mis prendas de vestir 
+preparar el desayuno
+alistarme para la universidad
+Revisar las clases del día
+colocar los materiales necesarios para las clases en la mochila
+colocarme la mochila en la espalda
+salir de la casa
+agarrar mis llaves
+salir de la casa
+cerrar puerta 
+pasarle el cerrojo a las puertas 
+Agarrar el medio de transporte 
+llegar a la universidad 
+recibir las clases
+escuchar al profesor 
+tomar nota de las clases 
+hacer los ejercicios de las clases
+Salir de clases 
+ir a mi trabajo en el restaurante
+trabajar por 10 - 12 horas en el restaurante
+salir de trabajar
+agarrar el transporte a la casa
+llegar a la casa 
+entrar a la casa	
+abrir la puerta 
+entrar 
+cerrar la puerta 
+Hacer tareas o estudiar 
+lavarme la cara antes de irme  a dormir 
+dormir 
