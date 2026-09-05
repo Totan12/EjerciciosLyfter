@@ -1,13 +1,13 @@
+import Student
 
 def calculate_student_average(student):
-    total = student["spanish"] + student["english"] + student["social_studies"] + student["science"]
+    total = student.spanish + student.english + student.social_studies + student.science
     return total / 4
 
 def is_valid_name(name):
     cleaned_name = name.strip()
     if not cleaned_name:
         return False
-    
     for char in cleaned_name:
         if not (char.isalpha() or char.isspace()):
             return False
@@ -17,15 +17,13 @@ def is_valid_section(section):
     cleaned = section.strip()
     if len(cleaned) < 2 or len(cleaned) > 3:
         return False
-        
     digits_part = cleaned[:-1]  
     letter_part = cleaned[-1]  
-    
     return digits_part.isdigit() and letter_part.isalpha()
 
 def student_exists(name, section, students):
     for student in students:
-        if student["name"].lower() == name.strip().lower() and student["section"] == section.strip().upper():
+        if student.name.lower() == name.strip().lower() and student.section == section.strip().upper():
             return True
     return False
 
@@ -64,14 +62,8 @@ def add_students(students):
         social_studies = get_valid_grade("Social Studies")
         science = get_valid_grade("Science")
         
-        new_student = {
-            "name": name,
-            "section": section,
-            "spanish": spanish,
-            "english": english,
-            "social_studies": social_studies,
-            "science": science
-        }
+        # Se instancia la clase Student
+        new_student = Student(name, section, spanish, english, social_studies, science)
         students.append(new_student)
         print(f"[Success] Student '{name}' added successfully.")
         
@@ -86,8 +78,8 @@ def display_all_students(students):
     print("\n==================== ALL STUDENTS LIST ====================")
     for idx, s in enumerate(students, 1):
         avg = calculate_student_average(s)
-        print(f"{idx}. Name: {s['name']} | Section: {s['section']}")
-        print(f"   Grades -> Spa: {s['spanish']} | Eng: {s['english']} | Soc: {s['social_studies']} | Sci: {s['science']}")
+        print(f"{idx}. Name: {s.name} | Section: {s.section}")
+        print(f"   Grades -> Spa: {s.spanish} | Eng: {s.english} | Soc: {s.social_studies} | Sci: {s.science}")
         print(f"   Average: {avg:.2f}")
         print("-" * 55)
 
@@ -101,7 +93,7 @@ def display_top_three(students):
     print("\n==================== TOP 3 STUDENTS ====================")
     for idx, s in enumerate(sorted_students[:3], 1):
         avg = calculate_student_average(s)
-        print(f"Rank {idx}: {s['name']} [Sec: {s['section']}] - Average: {avg:.2f}")
+        print(f"Rank {idx}: {s.name} [Sec: {s.section}] - Average: {avg:.2f}")
 
 def display_global_average(students):
     if not students:
@@ -126,7 +118,7 @@ def delete_student(students):
     
     target_student = None
     for s in students:
-        if s["name"].lower() == name.lower() and s["section"] == section:
+        if s.name.lower() == name.lower() and s.section == section:
             target_student = s
             break
             
@@ -134,7 +126,7 @@ def delete_student(students):
         print("\n[Error] Student not found with the provided name and section.")
         return
         
-    confirm = input(f"Are you sure you want to delete {target_student['name']} from {section}? (y/n): ").lower()
+    confirm = input(f"Are you sure you want to delete {target_student.name} from {section}? (y/n): ").lower()
     if confirm == 'y':
         students.remove(target_student)
         print("[Success] Student deleted successfully.")
@@ -153,13 +145,14 @@ def display_failed_students(students):
     
     for s in students:
         failed_subjects = []
-        for subject_label, key in subjects:
-            if s[key] < 60:
-                failed_subjects.append(f"{subject_label}: {s[key]}")
+        for subject_label, attr in subjects:
+            grade = getattr(s, attr)
+            if grade < 60:
+                failed_subjects.append(f"{subject_label}: {grade}")
                 
         if failed_subjects:
             found_failed = True
-            print(f"Name: {s['name']} | Section: {s['section']}")
+            print(f"Name: {s.name} | Section: {s.section}")
             print(f"  -> Failed Subjects: {', '.join(failed_subjects)}")
             print("-" * 55)
             
